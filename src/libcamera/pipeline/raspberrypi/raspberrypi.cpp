@@ -337,6 +337,8 @@ public:
 
 	bool match(DeviceEnumerator *enumerator) override;
 
+	void releaseDevice(Camera *camera) override;
+
 private:
 	RPiCameraData *cameraData(Camera *camera)
 	{
@@ -1193,6 +1195,12 @@ bool PipelineHandlerRPi::match(DeviceEnumerator *enumerator)
 	return !!numCameras;
 }
 
+void PipelineHandlerRPi::releaseDevice(Camera *camera)
+{
+	RPiCameraData *data = cameraData(camera);
+	data->freeBuffers();
+}
+
 int PipelineHandlerRPi::registerCamera(MediaDevice *unicam, MediaDevice *isp, MediaEntity *sensorEntity)
 {
 	std::unique_ptr<RPiCameraData> data = std::make_unique<RPiCameraData>(this);
@@ -1506,9 +1514,6 @@ void PipelineHandlerRPi::mapBuffers(Camera *camera, const RPi::BufferMap &buffer
 
 void RPiCameraData::freeBuffers()
 {
-	if (!buffersAllocated_)
-		return;
-
 	if (ipa_) {
 		/*
 		 * Copy the buffer ids from the unordered_set to a vector to
