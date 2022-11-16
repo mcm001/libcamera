@@ -837,8 +837,6 @@ void IPARPi::queueRequest(const ControlList &controls)
 		case controls::AWB_ENABLE: {
 			RPiController::Algorithm *awb = controller_.getAlgorithm("awb");
 			if (!awb) {
-				LOG(IPARPI, Warning)
-					<< "Could not set AWB_ENABLE - no AWB algorithm";
 				break;
 			}
 
@@ -877,8 +875,6 @@ void IPARPi::queueRequest(const ControlList &controls)
 			RPiController::AwbAlgorithm *awb = dynamic_cast<RPiController::AwbAlgorithm *>(
 				controller_.getAlgorithm("awb"));
 			if (!awb) {
-				LOG(IPARPI, Warning)
-					<< "Could not set COLOUR_GAINS - no AWB algorithm";
 				break;
 			}
 
@@ -924,8 +920,6 @@ void IPARPi::queueRequest(const ControlList &controls)
 			RPiController::CcmAlgorithm *ccm = dynamic_cast<RPiController::CcmAlgorithm *>(
 				controller_.getAlgorithm("ccm"));
 			if (!ccm) {
-				LOG(IPARPI, Warning)
-					<< "Could not set SATURATION - no ccm algorithm";
 				break;
 			}
 
