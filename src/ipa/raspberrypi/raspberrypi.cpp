@@ -933,8 +933,6 @@ void IPARPi::queueRequest(const ControlList &controls)
 			RPiController::SharpenAlgorithm *sharpen = dynamic_cast<RPiController::SharpenAlgorithm *>(
 				controller_.getAlgorithm("sharpen"));
 			if (!sharpen) {
-				LOG(IPARPI, Warning)
-					<< "Could not set SHARPNESS - no sharpen algorithm";
 				break;
 			}
 
