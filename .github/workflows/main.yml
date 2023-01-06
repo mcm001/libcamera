@@ -21,7 +21,7 @@ jobs:
         bind_mount_repository: true
         commands: |
             apt-get update
-            apt-get install -y build-essential meson ninja-build libssl-dev openssl libyaml-dev python3-yaml python3-ply python3-jinja2 libudev-dev libevent-dev libdrm-dev python3 
+            apt-get install -y build-essential meson ninja-build libssl-dev openssl libyaml-dev python3-yaml python3-setuptools python3-ply python3-jinja2 libudev-dev libevent-dev libdrm-dev python3 
             meson build
             ninja -C build install
 
